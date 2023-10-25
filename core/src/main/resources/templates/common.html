@@ -72,7 +72,7 @@
             display: block;
             position: relative;
             float: left;
-            width: 700px;
+            width: 620px;
             padding: 0;
             margin: 10px 20px 10px 0;
             font-weight: 600;
@@ -84,7 +84,7 @@
         }
 
         .btnBlueGreen {
-            background: #00AE68;
+            background-image: radial-gradient(circle farthest-corner at center, rgba(0, 128, 0, 1) 15%, rgba(50, 155, 36, 1) 30%, rgba(82, 182, 64, 1) 45%, rgba(111, 210, 90, 1) 50%, rgba(140, 239, 116, 1) 60%, rgba(168, 255, 143, 1) 70%, rgba(198, 255, 171, 1) 80%, rgba(227, 255, 199, 1) 85%, rgba(255, 255, 227, 1) 90%, rgba(255, 255, 255, 1) 100%);
         }
 
         .btnLightBlue {
@@ -99,6 +99,9 @@
             background: #A74982;
         }
 
+        .btnRed {
+            background-image: radial-gradient(circle farthest-corner at center, rgba(255, 0, 0, 1) 10%, rgba(255, 25, 25, 1) 20%, rgba(255, 51, 51, 1) 30%, rgba(255, 77, 77, 1) 40%, rgba(255, 102, 102, 1) 50%, rgba(255, 128, 128, 1) 60%, rgba(255, 153, 153, 1) 70%, rgba(255, 179, 179, 1) 80%, rgba(255, 204, 204, 1) 90%, rgba(255, 230, 230, 1) 100%);
+        }
         .btnBlueGreen.btnPush {
             box-shadow: 0px 5px 0px 0px #007144;
         }
@@ -113,6 +116,10 @@
 
         .btnPurple.btnPush {
             box-shadow: 0px 5px 0px 0px #6D184B;
+        }
+
+        .btnRed.btnPush {
+            box-shadow: 0px 5px 0px 0px #bb0100;
         }
 
         .btnPush:hover {
@@ -134,6 +141,10 @@
 
         .btnPurple.btnPush:hover {
             box-shadow: 0px 0px 0px 0px #6D184B;
+        }
+
+        .btnRed.btnPush:hover {
+            box-shadow: 0px 0px 0px 0px #bb0100;
         }
 
         .header-wrapper {
@@ -168,7 +179,7 @@
             padding: 0 10px 0 0;
         }
         .input-text-class {
-            width: 600px;
+            width: 540px;
             height: 40px;
             font-size: 18px;
             border: 4px solid #1e9ad6;
@@ -177,7 +188,7 @@
         .button-container {
             overflow: hidden;
             text-align: center;
-            margin: 0 160px;
+            margin: 20px 160px;
         }
     </style>
 </head>
@@ -207,14 +218,15 @@
     </div>
     <div class="main-wrapper">
         <div class="main-container">
-            <form action="/post" method="post" class="form-class">
+            <form action="/common-post" method="post" class="form-class">
                 <div class="text">유저이름</div>
                 <input type="text" value="" name="text" class="input-text-class" placeholder="보내고 싶은 텍스트를 입력해주세요">
                 <div class="button-container">
-                    <button type="submit" class="button btnPush btnBlueGreen">프리셋 1.폰트: Arial, 텍스트 크기: 30px, 텍스트 컬러: 그린, 텍스트 효과: 바운스</button>
-                    <button type="submit" class="button btnPush btnLightBlue">프리셋 2.폰트: Gerogia, 텍스트 크기: 42px, 텍스트 컬러: 스카이블루, 텍스트 효과: 네온</button>
-                    <button type="submit" class="button btnPush btnOrange">프리셋 3.폰트: Sans, 텍스트 크기: 50px, 텍스트 컬러: 오렌지, 텍스트 효과: 지그재그</button>
-                    <button type="submit" class="button btnPush btnPurple">프리셋 4.폰트: London, 텍스트 크기: 82px, 텍스트 컬러: 퍼플, 텍스트 효과: 팝콘</button>
+                    <button type="submit" class="button btnPush btnBlueGreen" name="preset" value="1">프리셋 1.폰트: Arial, 텍스트 크기: 30px, 텍스트 컬러: 그린, 텍스트 효과: 바운스</button>
+                    <button type="submit" class="button btnPush btnLightBlue" name="preset" value="2">프리셋 2.폰트: Gerogia, 텍스트 크기: 42px, 텍스트 컬러: 스카이블루, 텍스트 효과: 네온</button>
+                    <button type="submit" class="button btnPush btnOrange" name="preset" value="3">프리셋 3.폰트: Sans, 텍스트 크기: 50px, 텍스트 컬러: 오렌지, 텍스트 효과: 지그재그</button>
+                    <button type="submit" class="button btnPush btnPurple" name="preset" value="4">프리셋 4.폰트: London, 텍스트 크기: 82px, 텍스트 컬러: 퍼플, 텍스트 효과: 팝콘</button>
+                    <button type="submit" class="button btnPush btnRed" name="preset" value="5">프리셋 5.폰트: London, 텍스트 크기: 82px, 텍스트 컬러: 퍼플, 텍스트 효과: 팝콘</button>
                 </div>
             </form>
         </div>
