@@ -9,9 +9,9 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Slf4j
@@ -19,68 +19,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
 
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
 
-    // 시작페이지 접근 시, login 페이지로 리다이렉트
-    @GetMapping("/")
-    public String home(){
-        return "redirect:/login";
-    }
-
-
-
-    // 로그인 페이지 접근 시, 해당 페이지 보여줌
-    @GetMapping("/login")
-    public String loginForm(@ModelAttribute("") LoginForm form){
-        return "";
-    }
-
-
-    // 로그인 동시에 멤버 정보 저장소에 저장, 세션 부여: 30분 지속
+    // 리액트에서 JSON 객체로 로그인 정보를 넘겨주면 멤버저장소에 저장 -> 추후 mysql 연결 예정
+    @ResponseBody
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginForm form, HttpServletRequest request){
+    public Member login(@RequestBody LoginForm form, HttpServletRequest request){
         Member member = new Member();
         member.setName(form.getName());
         member.setStudentId(form.getStudentId());
         memberRepository.save(member);
+        log.info("name={}, studentId={}",member.getName(),member.getStudentId());
+
+        // 추후 사용자 타입과 메세지, 효과가 들어올 때, 사용자를 구분하기 위해 세션을 붙여서 전송 -> 프론트엔드 파트와 통합 혹은 이야기 해봐야됨
         HttpSession session = request.getSession();
-        session.setAttribute("loginMember",member);
+        session.setAttribute("사용자 정보", member);
 
-        return "redirect:/main";
+        return member;
     }
 
 
-    // 로그아웃 시 해당 세션 제거 및 로그인 페이지로 리다이렉트
-    @PostMapping("/logout")
-    public String logout(HttpServletRequest request){
-        HttpSession session = request.getSession(false);
-        if(session != null){
-            session.invalidate();
-        }
-        return "redirect:/login";
-    }
-
-
-    @GetMapping("/main")
-    public String mainPage(){
-        return "";
-    }
-
-    @GetMapping("/common")
-    public String common(){
-        return "";
-    }
-
-    @GetMapping("/dev")
-    public String dev(){
-        return "";
-    }
-
+    // 로그인 사용자 정보 반환:
+    @ResponseBody
     @GetMapping("/guest")
-    public String guest(){
-        return "";
+    public List<Member> login(){
+
+        return memberRepository.findAll();
     }
+
 
 
 }
