@@ -79,8 +79,7 @@ const BackgroundWrapper = styled.div`
 `;
 
 const LogoImage = styled.div`
-  position: absolute;
-  top: 130px;
+  margin-bottom: 100px;
   background: url(${bg}) center no-repeat;
   width: 200px;
   height: 187px;
