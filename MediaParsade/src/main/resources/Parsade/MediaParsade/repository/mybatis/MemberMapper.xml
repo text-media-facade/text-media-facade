@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Parsade.MediaParsade.repository.mybatis.MemberMapper">
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into member (name, studentId)
+        values (#{name}, #{studentId})
+    </insert>
+
+    <update id="update">
+        update member
+        set name=#{updateParam.name},
+            studentId=#{updateParam.name},
+        where id = #{id}
+    </update>
+
+    <select id="findAll" resultType="Member">
+        select name, studentId
+        from member
+    </select>
+
+
+</mapper>

@@ -1,4 +1,4 @@
-package Parsade.MediaParsade;
+package Parsade.MediaParsade.config;
 
 import Parsade.MediaParsade.web.checkInterceptor;
 import org.springframework.context.annotation.Configuration;

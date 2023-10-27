@@ -1,4 +1,4 @@
-package Parsade.MediaParsade.member;
+package Parsade.MediaParsade.domain;
 
 
 import lombok.Data;
@@ -9,8 +9,5 @@ public class Member {
     private Long id;
     private String name;
     private String studentId;
-    private String type;
-    private String text;
-    private String select;
 
 }

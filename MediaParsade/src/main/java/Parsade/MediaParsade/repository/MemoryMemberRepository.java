@@ -1,6 +1,7 @@
-package Parsade.MediaParsade.member;
+package Parsade.MediaParsade.repository;
 
 
+import Parsade.MediaParsade.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 
 @Repository
-public class MemberRepository {
+public class MemoryMemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>();
     private static Long sequence = 0L;

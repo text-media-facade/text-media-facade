@@ -2,8 +2,8 @@ package Parsade.MediaParsade.controller;
 
 
 import Parsade.MediaParsade.login.LoginForm;
-import Parsade.MediaParsade.member.Member;
-import Parsade.MediaParsade.member.MemberRepository;
+import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
 
     // 리액트에서 JSON 객체로 로그인 정보를 넘겨주면 멤버저장소에 저장 -> 추후 mysql 연결 예정
@@ -29,7 +29,7 @@ public class MainController {
         Member member = new Member();
         member.setName(form.getName());
         member.setStudentId(form.getStudentId());
-        memberRepository.save(member);
+        memberService.save(member);
         log.info("name={}, studentId={}",member.getName(),member.getStudentId());
 
         // 추후 사용자 타입과 메세지, 효과가 들어올 때, 사용자를 구분하기 위해 세션을 붙여서 전송 -> 프론트엔드 파트와 통합 혹은 이야기 해봐야됨
@@ -44,8 +44,7 @@ public class MainController {
     @ResponseBody
     @GetMapping("/guest")
     public List<Member> login(){
-
-        return memberRepository.findAll();
+        return memberService.findAll();
     }
 
 

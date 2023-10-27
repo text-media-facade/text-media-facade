@@ -1,20 +1,19 @@
-package Parsade.MediaParsade.member;
+package Parsade.MediaParsade.domain;
 
+import Parsade.MediaParsade.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+class MemoryMemberRepositoryTest {
 
-class MemberRepositoryTest {
-
-    private MemberRepository memberRepository;
+    private MemoryMemberRepository memoryMemberRepository;
 
     @BeforeEach
     public void setUp() {
-        memberRepository = new MemberRepository(); // MemberRepository를 적절히 생성하거나 주입하세요.
+        memoryMemberRepository = new MemoryMemberRepository(); // MemberRepository를 적절히 생성하거나 주입하세요.
     }
 
     @Test
@@ -22,8 +21,8 @@ class MemberRepositoryTest {
         Member member = new Member();
         member.setName("hwang");
         member.setStudentId("20191511");
-        memberRepository.save(member);
-        List<Member> result = memberRepository.findAll();
+        memoryMemberRepository.save(member);
+        List<Member> result = memoryMemberRepository.findAll();
         System.out.println(result);
 
         Assertions.assertThat(result).contains(member);
