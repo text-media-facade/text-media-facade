@@ -21,7 +21,7 @@ public class MainController {
     private final MemberService memberService;
 
 
-    // 리액트에서 JSON 객체로 로그인 정보를 넘겨주면 멤버저장소에 저장 -> 추후 mysql 연결 예정
+    // 리액트에서 JSON 객체로 로그인 정보를 넘겨주면 멤버저장소에 저장 -> MyBatis를 통한 MYSQL 연결로 저장 확인
     @ResponseBody
     @PostMapping("/login")
     public String login(@RequestBody Member member, HttpServletRequest request){
