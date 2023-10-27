@@ -1,7 +1,6 @@
 package Parsade.MediaParsade.controller;
 
 
-import Parsade.MediaParsade.login.LoginForm;
 import Parsade.MediaParsade.domain.Member;
 import Parsade.MediaParsade.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,10 +24,7 @@ public class MainController {
     // 리액트에서 JSON 객체로 로그인 정보를 넘겨주면 멤버저장소에 저장 -> 추후 mysql 연결 예정
     @ResponseBody
     @PostMapping("/login")
-    public Member login(@RequestBody LoginForm form, HttpServletRequest request){
-        Member member = new Member();
-        member.setName(form.getName());
-        member.setStudentId(form.getStudentId());
+    public String login(@RequestBody Member member, HttpServletRequest request){
         memberService.save(member);
         log.info("name={}, studentId={}",member.getName(),member.getStudentId());
 
@@ -36,7 +32,7 @@ public class MainController {
         HttpSession session = request.getSession();
         session.setAttribute("사용자 정보", member);
 
-        return member;
+        return "OK";
     }
 
 
