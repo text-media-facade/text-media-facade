@@ -10,13 +10,14 @@
 
     <update id="update">
         update member
-        set name=#{updateParam.name},
-            studentId=#{updateParam.name},
-        where id = #{id}
+        set type=#{updateParam.type},
+            text=#{updateParam.text},
+            selection=#{updateParam.selection}
+        where id=#{id}
     </update>
 
     <select id="findAll" resultType="Member">
-        select name, studentId
+        select name, studentId, type, text, selection
         from member
     </select>
 

@@ -2,6 +2,7 @@ package Parsade.MediaParsade.controller;
 
 
 import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.repository.MemberUpdateDto;
 import Parsade.MediaParsade.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -43,6 +44,35 @@ public class MainController {
         return memberService.findAll();
     }
 
+
+    // 함수 사용자 저장 정보
+    // 세션정보를 통해서 기존 로그인 정보를 가져와서 해당 열에 데이터베이스 정보를 업데이트 한다.
+    @ResponseBody
+    @PostMapping("/function")
+    public String functions(@RequestBody Member member, HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            // 세션에서 사용자 정보를 가져옵니다.
+            Member originalMember = (Member) session.getAttribute("사용자 정보");
+            if (originalMember != null) {
+
+                Long id = originalMember.getId();
+                MemberUpdateDto dto = new MemberUpdateDto(member.getType(),member.getText(),
+                        member.getSelection());
+                log.info("id={}, dto={}, member={}", id, dto, member);
+
+                // 업데이트된 정보를 저장합니다.
+                memberService.update(id, dto);
+
+                return "ok";
+            }
+            return "not";
+        }
+        // 세션이 없거나 사용자 정보가 없는 경우 null을 반환합니다.
+        return "No";
+    }
 
 
 }

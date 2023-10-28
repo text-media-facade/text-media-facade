@@ -1,5 +1,6 @@
 package Parsade.MediaParsade.repository;
 
+
 import lombok.Data;
 
 @Data
@@ -9,7 +10,7 @@ public class MemberUpdateDto {
     private String studentId;
     private String type;
     private String text;
-    private String select;
+    private String selection;
 
     public MemberUpdateDto() {
     }
@@ -19,9 +20,9 @@ public class MemberUpdateDto {
         this.studentId = studentId;
     }
 
-    public MemberUpdateDto(String type, String text, String select) {
+    public MemberUpdateDto(String type, String text, String selection) {
         this.type = type;
         this.text = text;
-        this.select = select;
+        this.selection = selection;
     }
 }
