@@ -5,7 +5,6 @@ import Parsade.MediaParsade.domain.Member;
 import Parsade.MediaParsade.form.DisplayForm;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import Parsade.MediaParsade.service.MemberService;
-import Parsade.MediaParsade.service.PythonService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ import java.util.List;
 public class MainController {
 
     private final MemberService memberService;
-    private final PythonService pythonService;
 
 
 
@@ -86,7 +84,7 @@ public class MainController {
     // 세션정보를 통해서 기존 로그인 정보를 가져와서 해당 열에 데이터베이스 정보를 업데이트 한다.
     @ResponseBody
     @PostMapping("/api/function")
-    public DisplayForm functions(@RequestBody Member member, HttpServletRequest request){
+    public Member functions(@RequestBody Member member, HttpServletRequest request){
 
         HttpSession session = request.getSession(false);
 
@@ -95,13 +93,6 @@ public class MainController {
             Member originalMember = (Member) session.getAttribute("사용자 정보");
             log.info("name={}, studentId={}",originalMember.getName(), originalMember.getStudentId());
             if (originalMember.getStudentId() != null) {
-                DisplayForm displayForm = new DisplayForm(member.getType(), member.getText(), null);
-                displayForm.setResult(pythonService.runPythonCode(member.getSelection()));
-                log.info("result = {}",displayForm.getResult());
-                if(displayForm.getResult() == null){
-                    log.info("python fail");
-                    return displayForm;
-                }
 
                 Long id = originalMember.getId();
                 MemberUpdateDto dto = new MemberUpdateDto(member.getType(),member.getText(),
@@ -110,8 +101,7 @@ public class MainController {
 
                 // 업데이트된 정보를 저장합니다.
                 memberService.update(id, dto);
-                pythonService.deletePythonScript();
-                return displayForm;
+                return member;
             }
 
             log.info("not loginInfo");
