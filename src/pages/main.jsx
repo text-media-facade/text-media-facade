@@ -111,7 +111,7 @@ const RightSideWrapper = styled.div`
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
-  background-color: #1c86bb;
+  background-color: #26539c;
   cursor: pointer;
 `;
 
@@ -172,7 +172,7 @@ const CommonButton = styled.button`
   font-weight: 600;
   padding: 14px 16px;
   &:hover {
-    border: 4px solid #1c86bb;
+    border: 4px solid #26539c;
   }
 `;
 
@@ -188,7 +188,7 @@ const DevButton = styled.button`
   font-weight: 600;
   padding: 14px 16px;
   &:hover {
-    border: 4px solid #1c86bb;
+    border: 4px solid #26539c;
   }
 `;
 
@@ -204,7 +204,7 @@ const GuestButton = styled.button`
   font-weight: 600;
   padding: 14px 16px;
   &:hover {
-    border: 4px solid #1c86bb;
+    border: 4px solid #26539c;
   }
 `;
 
@@ -218,9 +218,9 @@ const LogoutButton = styled.button`
   font-size: 14px;
   font-weight: 500;
   padding: 3px 5px;
-  background-color: #1c86bd;
+  background-color: #26539c;
   margin-top: 80px;
   &:hover {
-    background-color: #19729e;
+    background-color: #1b3969;
   }
 `;
