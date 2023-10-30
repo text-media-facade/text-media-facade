@@ -3,13 +3,13 @@ package com.mipadobu.core.domain;
 import javax.persistence.*;
 
 @Entity
-public class Student {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "studentID")
     private Long studentID; //// 학생 ID, 자동 생성
-    @Column(name = "studentName")
-    private String studentName; // 학생 이름
+    @Column(name = "name")
+    private String name; // 학생 이름
     @Column(name = "text")
     private String text; // 텍스트
     @Column(name = "presetOrFunction")
@@ -23,12 +23,12 @@ public class Student {
         this.studentID = studentID;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getText() {
@@ -46,5 +46,4 @@ public class Student {
     public void setPresetOrFunction(String presetOrFunction) {
         this.presetOrFunction = presetOrFunction;
     }
-// 생성자, getter, setter, 기타 메소드
 }
