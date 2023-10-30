@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <ProfileWrapper />
+      <LogoWrapper />
       <LoginWrapper>
         <LoginTextWrapper> {"방명록 작성하기"}</LoginTextWrapper>
         <FormWrapper onSubmit={handleSubmit}>
@@ -70,12 +70,12 @@ const LoginTextWrapper = styled.div`
   margin-bottom: 80px;
 `;
 
-const ProfileWrapper = styled.div`
+const LogoWrapper = styled.div`
   position: absolute;
   top: 80px;
   background: url(${bg}) center no-repeat;
   width: 200px;
-  height: 187px;
+  height: 200px;
 `;
 
 const FormWrapper = styled.form`
@@ -95,7 +95,7 @@ const InputWrapper = styled.input`
   margin-bottom: 30px;
   color: #000;
   &:focus {
-    border: 3px solid #1e9ad6;
+    border: 3px solid #26539c;
   }
 `;
 
@@ -104,13 +104,13 @@ const SubmitButton = styled.button`
   height: 60px;
   border-radius: 8px;
   border: none;
-  background-color: #1e9ad6;
+  background-color: #26539c;
   color: #fff;
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
   padding: 14px 16px;
   &:hover {
-    background-color: #1c86bb;
+    background-color: #1c4079;
   }
 `;
