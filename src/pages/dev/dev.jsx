@@ -10,7 +10,7 @@ import {
     Button,
     Back,
     Code,
-    T,
+    TextImage ,
 } from './style';
 import { Link } from 'react-router-dom';
 import Toast from '../../components/Toast';
@@ -57,7 +57,7 @@ function DevPage() {
                 <h2>텍스트 입력 코딩 사용자</h2>
             </Header>
             <TextInput>
-                <T/>
+                <TextImage/>
                 <Text>텍스트</Text>
                 <Input1 
                   placeholder="텍스트를 입력해주세요." 

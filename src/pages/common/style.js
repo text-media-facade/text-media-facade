@@ -49,9 +49,14 @@ export const Header = styled.div`
 export const Back = styled.div`
     margin-left: 30px;
     width: 50px;
-    height: 61px;
+    height: 51px;
     cursor: pointer;
     background: url(${back}) center no-repeat;
+    transition: transform 0.3s;
+    &:hover {
+            transform: scale(1.05, 1.05);
+            background-size: 150% 150%;
+        }
 `
 
 export const TextInput = styled.div`
@@ -70,7 +75,7 @@ export const Text = styled.p`
     font-weight: 600;
 `;
 
-export const T = styled.div`
+export const TextImage = styled.div`
     background: url(${text}) center no-repeat;
     width: 50px;
     height: 61px;
@@ -122,7 +127,7 @@ export const Deco = styled.div`
 
 
 
-export const DecoList = styled.ul`
+export const StyleList = styled.ul`
     margin: 0 20px 40px;
     width: 94%;
     height: 40vh;
