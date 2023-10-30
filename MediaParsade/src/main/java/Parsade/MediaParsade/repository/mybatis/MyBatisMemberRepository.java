@@ -1,6 +1,7 @@
 package Parsade.MediaParsade.repository.mybatis;
 
 import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.form.DisplayForm;
 import Parsade.MediaParsade.repository.MemberRepository;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class MyBatisMemberRepository implements MemberRepository {
     public void update(Long memberId, MemberUpdateDto updateParam) {
         memberMapper.update(memberId, updateParam);
     }
+
 
 
     @Override
