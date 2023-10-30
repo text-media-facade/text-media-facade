@@ -44,6 +44,10 @@ const Main = () => {
     );
   }
 
+  const handleLogoutClick = () => {
+    console.log("로그아웃");
+  };
+
   return (
     <Layout>
       <BackgroundWrapper>
@@ -58,6 +62,7 @@ const Main = () => {
           <GuestButton onClick={() => navigate("/guest")}>
             {"방명록 리스트"}
           </GuestButton>
+          <LogoutButton onClick={handleLogoutClick}>{"로그아웃"}</LogoutButton>
         </LeftSideWrapper>
         <RightSideWrapper onClick={() => handleComponentToggle()}>
           <Wrapper3D isFlipped={isFlipped}>{renderedComponent}</Wrapper3D>
@@ -200,5 +205,22 @@ const GuestButton = styled.button`
   padding: 14px 16px;
   &:hover {
     border: 4px solid #1c86bb;
+  }
+`;
+
+const LogoutButton = styled.button`
+  width: 30%;
+  height: 30px;
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px 5px;
+  background-color: #1c86bd;
+  margin-top: 80px;
+  &:hover {
+    background-color: #19729e;
   }
 `;
