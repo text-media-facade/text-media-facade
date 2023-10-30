@@ -93,7 +93,6 @@ public class MainController {
             Member originalMember = (Member) session.getAttribute("사용자 정보");
             log.info("name={}, studentId={}",originalMember.getName(), originalMember.getStudentId());
             if (originalMember.getStudentId() != null) {
-
                 Long id = originalMember.getId();
                 MemberUpdateDto dto = new MemberUpdateDto(member.getType(),member.getText(),
                         member.getSelection());
