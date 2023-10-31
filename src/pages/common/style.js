@@ -155,7 +155,8 @@ export const Button1 = styled.button`
     background-image: linear-gradient(to right,  #fc6076, #f7186a);
     box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.45);
 
-        &:hover
+        &:hover,
+        &.active
          {
             background: linear-gradient(90deg,  #fc6076, #f7186a);
             background-size: 200% 200%;
@@ -168,7 +169,8 @@ export const Button2 = styled.button`
     background-image: linear-gradient(to right, #f5ce62, #ff9a44);
     box-shadow: 0 4px 15px 0 rgba(229, 150, 10, 0.45);
 
-        &:hover {
+        &:hover,
+        &.active {
             background: linear-gradient(90deg,  #f5ce62, #ff9a44);
             background-size: 200% 200%;
             animation: ${gradient} 3s ease infinite;
@@ -179,7 +181,8 @@ export const Button2 = styled.button`
 export const Button3 = styled.button`
     background-image: linear-gradient(to right, #b6eb77, #3cba92);
     box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.45);
-        &:hover {
+        &:hover,
+        &.active {
             background: linear-gradient(90deg,  #b6eb77, #3cba92);
             background-size: 200% 200%;
             animation: ${gradient} 3s ease infinite;
@@ -190,7 +193,8 @@ export const Button3 = styled.button`
 export const Button4 = styled.button`
     background-image: linear-gradient(to right, #00c7c5, #0088d7);
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.45);
-        &:hover {
+        &:hover,
+        &.active {
             background: linear-gradient(90deg,  #00c7c5, #0088d7);
             background-size: 200% 200%;
             animation: ${gradient} 3s ease infinite;
