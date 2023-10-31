@@ -8,9 +8,8 @@ import java.util.Optional;
 
 public interface MemberRepository {
 
-    Member save(Member member);
+    ReturnMember save(ReturnMember member);
 
-    void update(Long memberId, MemberUpdateDto updateParam);
 
     List<ReturnMember> findAll();
 
