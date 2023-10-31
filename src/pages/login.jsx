@@ -5,23 +5,39 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import bg from "../images/logo.png";
 
+import axios from "axios";
+
 const Login = () => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [id, setId] = useState(0);
+  const [studentId, setStudentId] = useState(0);
 
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
 
   const handleChangeId = (e) => {
-    setId(e.target.value);
+    setStudentId(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    console.log(name);
-    // 다른 페이지로 데이터(name, id) 전달?
+  const handleSubmit = () => {
+    // POST : name, studentId
+    axios
+      .post("http://3.38.231.213:8080/api/login", {
+        name: name,
+        studentId: studentId,
+      })
+      .then((response) => {
+        console.log("요청 성공");
+        navigate("/main");
+        // 세션 id 쿠키에 저장
+        const newSessionId = response.data.sessionId;
+        document.cookie = `sessionId=${newSessionId}; path=/; HttpOnly;`;
+      })
+      .catch((error) => {
+        console.log("요청 실패: ", error);
+      });
   };
 
   return (
@@ -29,7 +45,7 @@ const Login = () => {
       <LogoWrapper />
       <LoginWrapper>
         <LoginTextWrapper> {"방명록 작성하기"}</LoginTextWrapper>
-        <FormWrapper onSubmit={handleSubmit}>
+        <FormWrapper>
           <InputWrapper
             placeholder="이름을 입력하세요."
             onChange={handleChangeName}
@@ -39,9 +55,7 @@ const Login = () => {
             onChange={handleChangeId}
           />
         </FormWrapper>
-        <SubmitButton onSubmit={SubmitButton} onClick={() => navigate("/main")}>
-          참여하기
-        </SubmitButton>
+        <SubmitButton onClick={handleSubmit}>참여하기</SubmitButton>
       </LoginWrapper>
     </Layout>
   );
