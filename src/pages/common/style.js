@@ -111,7 +111,7 @@ export const TextImage = styled.div`
 `
 
 export const Input1 = styled.input`
-    width: 760px;
+    width: 740px;
     height: 45px;
     margin: auto 10px;
     border-radius: 10px;

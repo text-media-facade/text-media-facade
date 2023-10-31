@@ -56,7 +56,7 @@ export const Information = styled.div`
     width: 100%;
     padding: 10px 51px;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     & > div{
         display: flex;
@@ -94,7 +94,7 @@ export const Text = styled.p`
 `;
 
 export const Input1 = styled.input`
-    width: 760px;
+    width: 740px;
     height: 45px;
     margin: auto 10px;
     border-radius: 10px;
@@ -111,7 +111,7 @@ export const MyFunction = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 50px auto;
+    margin: 20px auto;
     padding: 10px 32px; 
     box-sizing: border-box;   
 `;
