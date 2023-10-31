@@ -46,6 +46,9 @@ const Main = () => {
 
   const handleLogoutClick = () => {
     console.log("로그아웃");
+    // 쿠키 삭제
+    document.cookie =
+      "sessionId=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure; HttpOnly";
   };
 
   return (

@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./pages/main";
 import Login from "./pages/login";
 import Display from "./pages/display";
-import Common from "./pages/common";
-import Dev from "./pages/dev";
+import Common from "./pages/common/common";
+import Dev from "./pages/dev/dev";
 import Guest from "./pages/guest";
 
 function App() {
