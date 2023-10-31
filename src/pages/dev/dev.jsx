@@ -10,45 +10,46 @@ import {
     Button,
     Back,
     Code,
-    TextImage ,
+    TextImage,
+    Title,
+    Input3,
+    Input4,
+    Input5
 } from './style';
 import { Link } from 'react-router-dom';
-import Toast from '../../components/Toast';
+import axios from 'axios';
 
 
 function DevPage() {
 
     const [text, setText] = useState('');
-    const [code, setCode] = useState('');
-    const [toast, setToast] = useState(false);
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Tab') {
-            e.preventDefault(); // 기본 동작을 중지
-            const {selectionStart, selectionEnd} = e.target;
-            const newCode = code.substring(0, selectionStart) + '\t' + code.substring(
-                selectionEnd
-            );
-            setCode(newCode);
-        }
-    };
+    const [color, setColor] = useState("");
+    const [fontsize, setFontSize] = useState("");
+    const [style, setStyle] = useState("");
 
     const resetInput = () => {
         setText('');
-        setCode('');
+        setColor('');
+        setFontSize('');
+        setStyle('');
     }; 
 
-    const showToast = () => {
+    const handleSubmit = () => {
+        // POST : name, studentId
         resetInput();
-        setToast(true);
-        console.log("토스트메세지!!!!!!!!!!")
-//         toast.success('제출되었습니다.', {
-//             position: "center", // 토스트 메시지 위치 설정 (위쪽 오른쪽)
-//             autoClose: 3000, // 메시지가 자동으로 닫히는 시간 (3초)
-//   });
-    };
-
-    {toast && <Toast setToast={setToast} text="제출되었습니다." />}
+    axios
+      .post("/api/function", {
+        color: color,
+        fontsize: fontsize,
+        style: style
+      })
+      .then((response) => {
+        console.log("요청 성공", response.data);
+      })
+      .catch((error) => {
+        console.log("요청 실패: ", error);
+      });
+  };
 
     return (
         <MainContainer>
@@ -66,18 +67,38 @@ function DevPage() {
                   onChange={(e) => setText(e.target.value)}/>
             </TextInput>
             <MyFunction>
-                <div>
+                <Title>
                     <Code/>
                     <Text>나만의 함수 입력</Text>
-                </div>
-                <Input2 
-                    rows="10"
-                    cols="50"
-                    placeholder="나만의 함수를 입력하세요. 입력 가능 함수 : python, java ..." 
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                    onKeyDown={handleKeyDown}/>
-                <Button type="submit" onClick={showToast}>제출</Button>
+                </Title>
+                <Input2>
+                    <div>
+                        <p>color</p>
+                        <Input3
+                            type="text"
+                            placeholder="컬러를 입력하세요."
+                            value={color}
+                            onChange={(e) => setColor(e.target.value)}/>
+                    </div>
+                    <div>
+                        <p>font-size</p>
+                        <Input4
+                            type="text"
+                            placeholder="폰트사이즈를 입력하세요."
+                            value={fontsize}
+                            onChange={(e) => setFontSize(e.target.value)}/>
+                    </div>
+                    <div>
+                        <p>style</p>
+                        <Input5
+                            type="text"
+                            placeholder="스타일을 입력하세요."
+                            value={style}
+                            onChange={(e) => setStyle(e.target.value)}/>
+                    </div>
+                </Input2> 
+                    
+                <Button type="submit" onClick={handleSubmit}>제출</Button>
             </MyFunction>
         </MainContainer>
     );
