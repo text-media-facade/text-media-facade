@@ -48,6 +48,35 @@ export const Back = styled.div`
         }
 `
 
+export const Information = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 51px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    & > div{
+        display: flex;
+    }
+    
+    & > div > input {
+        width: 350px;
+        height: 45px;
+        margin: auto 10px;
+        border-radius: 10px;
+        padding: 3px 0 0 10px;
+        background-color: #f2f2f2;
+        font-size: 18px;
+        border: none;
+        &:focus{
+            outline: none;
+        }
+    }
+`
+
 export const TextInput = styled.div`
     display: flex;
     flex-direction: row;

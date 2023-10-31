@@ -10,7 +10,8 @@ import {
   Button,
   Back,
   Code,
-  TextImage,
+    TextImage,
+  Information,
   Title,
   Input3,
   Input4,
@@ -20,26 +21,36 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function DevPage() {
-  const [text, setText] = useState("");
-  const [color, setColor] = useState("");
-  const [fontsize, setFontSize] = useState("");
-  const [style, setStyle] = useState("");
+    const [text, setText] = useState("");
+    const [name, setName] = useState('');
+    const [studentId, setStudentId] = useState('');
+    const [color, setColor] = useState("");
+    const [fontSize, setFontSize] = useState("");
+    const [style, setStyle] = useState("");
 
   const resetInput = () => {
     setText("");
     setColor("");
     setFontSize("");
     setStyle("");
+    setName('');
+    setStudentId('');
   };
 
   const handleSubmit = () => {
     // POST : name, studentId
     resetInput();
     axios
-      .post("/api/function", {
-        color: color,
-        fontsize: fontsize,
-        style: style,
+      .post("http://3.38.231.213:8080/api/function", {
+          name: name,
+          studentId: studentId,
+          type: "function",
+          text: text,
+          property: {
+            color: color,
+            fontSize: fontSize,
+            style: style
+        }
       })
       .then((response) => {
         console.log("요청 성공", response.data);
@@ -56,7 +67,25 @@ function DevPage() {
           <Back />
         </Link>
         <h2>텍스트 입력 코딩 사용자</h2>
-      </Header>
+          </Header>
+          <Information>
+            <div>
+              <Text>이름</Text>
+              <input
+                placeholder="이름을 입력해주세요." 
+                type="text"
+                value={name}
+              onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div>
+              <Text>학번</Text>
+              <input
+                placeholder="학번을 입력해주세요." 
+                type="text"
+                value={studentId}
+              onChange={(e) => setStudentId(e.target.value)} />
+            </div>
+            </Information>
       <TextInput>
         <TextImage />
         <Text>텍스트</Text>
@@ -87,7 +116,7 @@ function DevPage() {
             <Input4
               type="text"
               placeholder="폰트사이즈를 입력하세요."
-              value={fontsize}
+              value={fontSize}
               onChange={(e) => setFontSize(e.target.value)}
             />
           </div>
@@ -112,24 +141,4 @@ function DevPage() {
 
 export default DevPage;
 
-// const showToast = () => {
-//     // 여기서 서버로 POST 요청을 보냅니다.
-//     axios.post('서버의_URL', {
-//         text,
-//         function: code,
-//         // 세션 ID 또는 사용자 구분 정보를 추가합니다.
-//     })
-//     .then((response) => {
-//         // 성공적으로 제출된 경우 토스트 메시지 표시
-//         toast.success('제출되었습니다.', {
-//             position: "top-right",
-//             autoClose: 3000,
-//         });
-//         resetInput();
-//     })
-//     .catch((error) => {
-//         // 요청이 실패한 경우 에러 처리
-//         console.error(error);
-//         toast.error('제출에 실패했습니다.');
-//     });
-// };
+
