@@ -4,20 +4,36 @@
 <mapper namespace="Parsade.MediaParsade.repository.mybatis.MemberMapper">
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert into member (name, studentId)
-        values (#{name}, #{studentId})
+        INSERT INTO member (name, studentId)
+        SELECT #{name}, #{studentId}
+        FROM DUAL
+        WHERE NOT EXISTS (
+        SELECT 1
+        FROM member
+        WHERE studentId = #{studentId}
+        )
     </insert>
 
     <update id="update">
         update member
-        set type=#{updateParam.type},
-            text=#{updateParam.text},
-            selection=#{updateParam.selection}
-        where id=#{id}
+        <set>
+            <if test="updateParam.type == 'function'">
+                type = #{updateParam.type},
+                text = #{updateParam.text},
+                property = #{updateParam.property}
+            </if>
+            <if test="updateParam.type == 'common'">
+                type = #{updateParam.type},
+                text = #{updateParam.text},
+                selection = #{updateParam.selection}
+            </if>
+        </set>
+        where id = #{id}
     </update>
 
+
     <select id="findAll" resultType="Member">
-        select name, studentId, type, text, selection
+        select name, studentId, type, text, selection, property
         from member
     </select>
 

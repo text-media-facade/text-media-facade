@@ -11,6 +11,7 @@ public class Member {
     private String studentId;
     private String type;
     private String text;
-    private Selection selection;
+    private String selection;
+    private Property property;
 
 }

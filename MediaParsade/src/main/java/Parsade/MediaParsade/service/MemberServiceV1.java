@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -25,6 +26,7 @@ public class MemberServiceV1 implements MemberService{
     public void update(Long memberId, MemberUpdateDto updateParam) {
         memberRepository.update(memberId, updateParam);
     }
+
 
     @Override
     public List<Member> findAll() {

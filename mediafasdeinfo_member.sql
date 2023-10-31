@@ -29,9 +29,10 @@ CREATE TABLE `member` (
   `type` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
   `text` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
   `selection` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `property` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `studentId_UNIQUE` (`studentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='미디어파사드 데이터베이스 (2023-10-27 1차 생성 - name, studentId만 존재)';
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin COMMENT='미디어파사드 데이터베이스 (2023-10-27 1차 생성 - name, studentId만 존재)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-30 21:18:29
+-- Dump completed on 2023-10-31 22:01:11

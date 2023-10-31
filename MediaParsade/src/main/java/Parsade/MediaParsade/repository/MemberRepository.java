@@ -3,6 +3,7 @@ package Parsade.MediaParsade.repository;
 import Parsade.MediaParsade.domain.Member;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository {
 

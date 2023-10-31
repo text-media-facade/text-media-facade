@@ -2,7 +2,6 @@ package Parsade.MediaParsade.controller;
 
 
 import Parsade.MediaParsade.domain.Member;
-import Parsade.MediaParsade.form.DisplayForm;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import Parsade.MediaParsade.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Objects;
 
 
 @Slf4j
@@ -28,8 +28,11 @@ public class MainController {
     @ResponseBody
     @PostMapping("/api/login")
     public String login(@RequestBody Member member, HttpServletRequest request){
+
+
         memberService.save(member);
-        log.info("name={}, studentId={}",member.getName(),member.getStudentId());
+        log.info("name={}, studentId={}",
+                member.getName(),member.getStudentId());
 
         // 추후 사용자 타입과 메세지, 효과가 들어올 때, 사용자를 구분하기 위해 세션을 붙여서 전송 -> 프론트엔드 파트와 통합 혹은 이야기 해봐야됨
         HttpSession session = request.getSession();
@@ -51,7 +54,7 @@ public class MainController {
 
     @ResponseBody
     @PostMapping("/api/common")
-    public DisplayForm commons(@RequestBody Member member, HttpServletRequest request){
+    public Member commons(@RequestBody Member member, HttpServletRequest request){
         HttpSession session = request.getSession(false);
 
         if (session != null) {
@@ -59,16 +62,14 @@ public class MainController {
             Member originalMember = (Member) session.getAttribute("사용자 정보");
             log.info("name={}, studentId={}",originalMember.getName(), originalMember.getStudentId());
             if (originalMember.getStudentId() != null) {
-                DisplayForm displayForm = new DisplayForm(member.getType(), member.getText(), member.getSelection().toString());
 
                 Long id = originalMember.getId();
-                MemberUpdateDto dto = new MemberUpdateDto(member.getType(),member.getText(),
-                        member.getSelection().toString());
+                MemberUpdateDto dto = new MemberUpdateDto(member.getType(),member.getText(), member.getSelection());
                 log.info("id={}, dto={}, member={}", id, dto, member);
 
                 // 업데이트된 정보를 저장합니다.
                 memberService.update(id, dto);
-                return displayForm;
+                return member;
             }
 
             log.info("not loginInfo");
@@ -95,7 +96,7 @@ public class MainController {
             if (originalMember.getStudentId() != null) {
                 Long id = originalMember.getId();
                 MemberUpdateDto dto = new MemberUpdateDto(member.getType(),member.getText(),
-                        member.getSelection().toString());
+                        member.getProperty());
                 log.info("id={}, dto={}, member={}", id, dto, member);
 
                 // 업데이트된 정보를 저장합니다.
