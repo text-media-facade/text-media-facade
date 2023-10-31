@@ -102,6 +102,9 @@ export const Input1 = styled.input`
     padding: 3px 0 0 10px;
     background-color: #f2f2f2;
     font-size: 18px;
+    &:focus{
+            outline: none;
+        }
 `;
 
 export const MyFunction = styled.div`
@@ -170,6 +173,9 @@ export const Input3 = styled.input`
     border: 0;
     padding: 3px 0 0 10px;
     font-size: 18px;
+    &:focus{
+            outline: none;
+        }
 `
 
 export const Input5 = styled.input`
@@ -180,6 +186,9 @@ export const Input5 = styled.input`
     border: 0;
     padding: 3px 0 0 10px;
     font-size: 18px;
+    &:focus{
+            outline: none;
+        }
 `
 
 export const Input4 = styled.input`
@@ -190,6 +199,9 @@ export const Input4 = styled.input`
     border: 0;
     padding: 3px 0 0 10px;
     font-size: 18px;
+    &:focus{
+            outline: none;
+        }
 `
 
 export const Button = styled.button`
