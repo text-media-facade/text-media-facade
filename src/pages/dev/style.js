@@ -38,9 +38,14 @@ export const Header = styled.div`
 export const Back = styled.div`
     margin-left: 30px;
     width: 50px;
-    height: 61px;
+    height: 51px;
     cursor: pointer;
     background: url(${back}) center no-repeat;
+    transition: transform 0.3s;
+    &:hover {
+            transform: scale(1.05, 1.05);
+            background-size: 150% 150%;
+        }
 `
 
 export const TextInput = styled.div`
@@ -54,7 +59,7 @@ export const TextInput = styled.div`
 `;
 
 export const Text = styled.p`
-    font-size: 25px;
+    font-size: 30px;
     margin: auto 10px;
     font-weight: 600;
 `;
@@ -74,24 +79,23 @@ export const MyFunction = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 10px auto;
+    margin: 50px auto;
     padding: 10px 32px; 
-    box-sizing: border-box;
+    box-sizing: border-box;   
+`;
 
-    & > div {
-        display: flex;
-        flex-direction: row;
-    }
+export const Title = styled.div`
+    display: flex;
+    flex-direction: row;
 
-    & > div > p {
+    & > p {
         display: flex;
         align-items: flex-start;
         margin-left: 7px;
     }
-    
-`;
+`
 
-export const T = styled.div`
+export const TextImage = styled.div`
     background: url(${text}) center no-repeat;
     width: 50px;
     height: 61px;
@@ -105,21 +109,59 @@ export const Code = styled.div`
     margin-right: 6px;
 `
 
-export const Input2 = styled.textarea`
+export const Input2 = styled.div`
     margin: 20px;
     width: 94%;
-    height: 40vh;
-    resize: none;
+    height: 30vh;
     padding: 10px 10px;
-    font-size: 18px;
-    font-family: monospace;
-    font-weight: 600;
-    white-space: pre; /* 공백 문자(들여쓰기)를 유지하도록 설정 */
-    tab-size: 3; /* 탭 문자 크기를 지정 (들여쓰기 간격) */
     background-color: #f2f2f2;
     border: 0;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > div {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    & > div > p {
+        font-size: 25px;
+        font-weight: 600;
+    }
 `;
+
+export const Input3 = styled.input`
+    width: 700px;
+    height: 45px;
+    margin: auto 10px auto 70px;
+    border-radius: 10px;
+    border: 0;
+    padding: 3px 0 0 10px;
+    font-size: 18px;
+`
+
+export const Input5 = styled.input`
+    width: 700px;
+    height: 45px;
+    margin: auto 10px auto 77px;
+    border-radius: 10px;
+    border: 0;
+    padding: 3px 0 0 10px;
+    font-size: 18px;
+`
+
+export const Input4 = styled.input`
+    width: 700px;
+    height: 45px;
+    margin: auto 10px auto 30px;
+    border-radius: 10px;
+    border: 0;
+    padding: 3px 0 0 10px;
+    font-size: 18px;
+`
 
 export const Button = styled.button`
     display: flex;

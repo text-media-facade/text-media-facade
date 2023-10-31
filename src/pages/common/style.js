@@ -49,9 +49,14 @@ export const Header = styled.div`
 export const Back = styled.div`
     margin-left: 30px;
     width: 50px;
-    height: 61px;
+    height: 51px;
     cursor: pointer;
     background: url(${back}) center no-repeat;
+    transition: transform 0.3s;
+    &:hover {
+            transform: scale(1.05, 1.05);
+            background-size: 150% 150%;
+        }
 `
 
 export const TextInput = styled.div`
@@ -70,7 +75,7 @@ export const Text = styled.p`
     font-weight: 600;
 `;
 
-export const T = styled.div`
+export const TextImage = styled.div`
     background: url(${text}) center no-repeat;
     width: 50px;
     height: 61px;
@@ -122,7 +127,7 @@ export const Deco = styled.div`
 
 
 
-export const DecoList = styled.ul`
+export const StyleList = styled.ul`
     margin: 0 20px 40px;
     width: 94%;
     height: 40vh;
@@ -150,7 +155,8 @@ export const Button1 = styled.button`
     background-image: linear-gradient(to right,  #fc6076, #f7186a);
     box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.45);
 
-        &:hover
+        &:hover,
+        &.active
          {
             background: linear-gradient(90deg,  #fc6076, #f7186a);
             background-size: 200% 200%;
@@ -163,7 +169,8 @@ export const Button2 = styled.button`
     background-image: linear-gradient(to right, #f5ce62, #ff9a44);
     box-shadow: 0 4px 15px 0 rgba(229, 150, 10, 0.45);
 
-        &:hover {
+        &:hover,
+        &.active {
             background: linear-gradient(90deg,  #f5ce62, #ff9a44);
             background-size: 200% 200%;
             animation: ${gradient} 3s ease infinite;
@@ -174,7 +181,8 @@ export const Button2 = styled.button`
 export const Button3 = styled.button`
     background-image: linear-gradient(to right, #b6eb77, #3cba92);
     box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.45);
-        &:hover {
+        &:hover,
+        &.active {
             background: linear-gradient(90deg,  #b6eb77, #3cba92);
             background-size: 200% 200%;
             animation: ${gradient} 3s ease infinite;
@@ -185,7 +193,8 @@ export const Button3 = styled.button`
 export const Button4 = styled.button`
     background-image: linear-gradient(to right, #00c7c5, #0088d7);
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.45);
-        &:hover {
+        &:hover,
+        &.active {
             background: linear-gradient(90deg,  #00c7c5, #0088d7);
             background-size: 200% 200%;
             animation: ${gradient} 3s ease infinite;
