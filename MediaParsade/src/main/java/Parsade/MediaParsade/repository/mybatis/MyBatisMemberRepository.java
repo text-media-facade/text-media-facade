@@ -1,6 +1,7 @@
 package Parsade.MediaParsade.repository.mybatis;
 
 import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.domain.ReturnMember;
 import Parsade.MediaParsade.repository.MemberRepository;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class MyBatisMemberRepository implements MemberRepository {
 
 
     @Override
-    public List<Member> findAll() {
+    public List<ReturnMember> findAll() {
         return memberMapper.findAll();
     }
 

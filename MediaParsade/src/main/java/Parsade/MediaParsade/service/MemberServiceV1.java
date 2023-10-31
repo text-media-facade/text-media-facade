@@ -1,6 +1,7 @@
 package Parsade.MediaParsade.service;
 
 import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.domain.ReturnMember;
 import Parsade.MediaParsade.repository.MemberRepository;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class MemberServiceV1 implements MemberService{
 
 
     @Override
-    public List<Member> findAll() {
+    public List<ReturnMember> findAll() {
         return memberRepository.findAll();
     }
 }

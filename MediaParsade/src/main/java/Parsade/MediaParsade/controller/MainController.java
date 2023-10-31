@@ -2,6 +2,7 @@ package Parsade.MediaParsade.controller;
 
 
 import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.domain.ReturnMember;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import Parsade.MediaParsade.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,7 +47,7 @@ public class MainController {
 
     @ResponseBody
     @GetMapping("/api/guest")
-    public List<Member> login(){
+    public List<ReturnMember> login(){
         log.info("요청받음");
         return memberService.findAll();
     }

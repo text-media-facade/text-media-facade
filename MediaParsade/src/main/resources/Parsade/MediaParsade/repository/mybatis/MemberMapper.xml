@@ -32,7 +32,7 @@
     </update>
 
 
-    <select id="findAll" resultType="Member">
+    <select id="findAll" resultType="ReturnMember">
         select name, studentId, type, text, selection, property
         from member
     </select>

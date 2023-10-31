@@ -2,6 +2,7 @@ package Parsade.MediaParsade.repository.mybatis;
 
 
 import Parsade.MediaParsade.domain.Member;
+import Parsade.MediaParsade.domain.ReturnMember;
 import Parsade.MediaParsade.repository.MemberUpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,6 +18,6 @@ public interface MemberMapper {
     MemberUpdateDto updateParam);
 
 
-    List<Member> findAll();
+    List<ReturnMember> findAll();
 
 }
