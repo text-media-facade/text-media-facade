@@ -59,6 +59,35 @@ export const Back = styled.div`
         }
 `
 
+export const Information = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 51px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    & > div{
+        display: flex;
+    }
+    
+    & > div > input {
+        width: 350px;
+        height: 45px;
+        margin: auto 10px;
+        border-radius: 10px;
+        padding: 3px 0 0 10px;
+        background-color: #f2f2f2;
+        font-size: 18px;
+        border: none;
+        &:focus{
+            outline: none;
+        }
+    }
+`
+
 export const TextInput = styled.div`
     display: flex;
     flex-direction: row;
@@ -66,7 +95,7 @@ export const TextInput = styled.div`
     width: 100%;
     padding: 10px 32px;
     margin-left: 40px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 `;
 
 export const Text = styled.p`
@@ -86,10 +115,13 @@ export const Input1 = styled.input`
     height: 45px;
     margin: auto 10px;
     border-radius: 10px;
-    border: 0;
+    border: none;
     padding: 3px 0 0 10px;
     background-color: #f2f2f2;
     font-size: 18px;
+    &:focus{
+            outline: none;
+        }
 `;
 
 export const MyFunction = styled.div`
@@ -109,6 +141,7 @@ display: flex;
         display: flex;
         align-items: flex-start;
         margin-left: 7px;
+        
     }
 
     & > div > img {
@@ -130,7 +163,7 @@ export const Deco = styled.div`
 export const StyleList = styled.ul`
     margin: 0 20px 40px;
     width: 94%;
-    height: 40vh;
+    height: 35vh;
     padding: 10px 10px;
     list-style: none;
     border: none;
