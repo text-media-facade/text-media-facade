@@ -28,7 +28,6 @@ public class MemberServiceV1 implements MemberService{
         memberRepository.update(memberId, updateParam);
     }
 
-
     @Override
     public List<ReturnMember> findAll() {
         return memberRepository.findAll();
