@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 
+import axios from "axios";
+
 const Guest = () => {
   const [guests, setGuests] = useState([]);
 
@@ -11,37 +13,42 @@ const Guest = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("서버주소");
-        if (!response.ok) {
+        // Axios를 사용하여 데이터 가져오기
+        const response = await axios.get("http://3.38.231.213:8080/api/guest");
+
+        if (response.status !== 200) {
           throw new Error("Network response was not ok");
         }
-        const jsonData = await response.json();
-        setGuests(jsonData.guests);
+        console.log(response.data);
+        setGuests(response.data);
       } catch (error) {
         console.error("Error fetching guests: ", error);
       }
     };
+
     fetchData();
   }, []);
-
   return (
     <Layout>
       <ListTextWrapper>{"방명록 리스트"}</ListTextWrapper>
       <ColumnWrapper>
         <NameItem>{"이름"}</NameItem>
+        <StudentIdItem>{"학번"}</StudentIdItem>
+        <SelectionItem>{"스타일 번호"}</SelectionItem>
         <TextItem>{"텍스트"}</TextItem>
-        <StyleItem>{"효과"}</StyleItem>
-        <FunctionItem>{"함수"}</FunctionItem>
+        <TypeItem>{"선택"}</TypeItem>
       </ColumnWrapper>
       <ListWrapper>
-        {guests.map((guest) => {
-          <ListItem key={guest.id}>
-            <NameItem>{guest.name || "-"}</NameItem>
-            <TextItem>{guest.text || "-"}</TextItem>
-            <StyleItem>{guest.style || "-"}</StyleItem>
-            <FunctionItem>{guest.function || "-"}</FunctionItem>
-          </ListItem>;
-        })}
+        {guests &&
+          guests.map((guest) => (
+            <ListItem key={guest.id}>
+              <NameItem>{guest.name || "-"}</NameItem>
+              <StudentIdItem>{guest.studentId || "-"}</StudentIdItem>
+              <SelectionItem>{guest.selection || "-"}</SelectionItem>
+              <TextItem>{guest.text || "-"}</TextItem>
+              <TypeItem>{guest.type || "-"}</TypeItem>
+            </ListItem>
+          ))}
       </ListWrapper>
     </Layout>
   );
@@ -65,7 +72,8 @@ const ColumnWrapper = styled.div`
   top: 240px;
   font-size: 20px;
   font-weight: 600;
-  background-color: #1e9ad6;
+  background-color: #26539c;
+  color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   text-align: center;
@@ -107,19 +115,9 @@ const NameItem = styled.div`
   word-break: break-all;
 `;
 
-const TextItem = styled.div`
-  width: 350px;
+const StudentIdItem = styled.div`
+  width: 200px;
   padding: 0px 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: break-all;
-`;
-
-const StyleItem = styled.div`
-  width: 50px;
-  padding: 0px 10px;
-  border: none;
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
@@ -127,9 +125,30 @@ const StyleItem = styled.div`
   word-break: break-all;
 `;
 
-const FunctionItem = styled.div`
+const SelectionItem = styled.div`
+  width: 350px;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+`;
+
+const TextItem = styled.div`
+  width: 350px;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+`;
+
+const TypeItem = styled.div`
   width: 400px;
   padding: 0px 10px;
+  text-align: center;
   border: none;
   text-align: center;
   overflow: hidden;
