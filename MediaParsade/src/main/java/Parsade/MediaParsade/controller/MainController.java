@@ -20,6 +20,7 @@ public class MainController {
 
 
 
+
     // 로그인 사용자 정보 반환:
 
     @ResponseBody
@@ -32,8 +33,8 @@ public class MainController {
 
     @ResponseBody
     @PostMapping("/api/common")
-    public Member commons(@RequestBody Member member){
-
+    public String commons(@RequestBody Member member){
+        String redirectUrl = "http://textmediafacade.site:3000/display";
         ReturnMember returnMember = new ReturnMember();
         returnMember.setName(member.getName());
         returnMember.setType(member.getType());
@@ -43,7 +44,9 @@ public class MainController {
 
         log.info("name={}, studentId={}",returnMember.getName(), returnMember.getStudentId());
         memberService.save(returnMember);
-        return member;
+        redirectUrl += "?text=" + member.getText() +"&selection=" + member.getSelection();
+        log.info("redirectUrl = {}",redirectUrl);
+        return "redirect:" + redirectUrl;
     }
 
 
@@ -51,7 +54,9 @@ public class MainController {
     // 세션정보를 통해서 기존 로그인 정보를 가져와서 해당 열에 데이터베이스 정보를 업데이트 한다.
     @ResponseBody
     @PostMapping("/api/function")
-    public Member functions(@RequestBody Member member){
+    public String functions(@RequestBody Member member){
+
+        String redirectUrl = "http://textmediafacade.site:3000/display";
         ReturnMember returnMember = new ReturnMember();
         returnMember.setName(member.getName());
         returnMember.setType(member.getType());
@@ -62,7 +67,9 @@ public class MainController {
 
         log.info("name={}, studentId={}",returnMember.getName(), returnMember.getStudentId());
         memberService.save(returnMember);
-        return member;
+        redirectUrl += "?text=" + member.getText()+ "&property="  + member.getProperty();
+        log.info("redirectUrl = {}",redirectUrl);
+        return "redirect:" + redirectUrl;
     }
 
 }
