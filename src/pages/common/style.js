@@ -111,7 +111,7 @@ export const TextImage = styled.div`
 `
 
 export const Input1 = styled.input`
-    width: 740px;
+    width: 745px;
     height: 45px;
     margin: auto 10px;
     border-radius: 10px;
@@ -163,7 +163,7 @@ export const Deco = styled.div`
 export const StyleList = styled.ul`
     margin: 0 20px 40px;
     width: 94%;
-    height: 35vh;
+    height: 40vh;
     padding: 10px 10px;
     list-style: none;
     border: none;
