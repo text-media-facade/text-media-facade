@@ -10,7 +10,7 @@ import {
   Button,
   Back,
   Code,
-    TextImage,
+  TextImage,
   Information,
   Title,
   Input3,
@@ -21,20 +21,20 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function DevPage() {
-    const [text, setText] = useState("");
-    const [name, setName] = useState('');
-    const [studentId, setStudentId] = useState('');
-    const [color, setColor] = useState("");
-    const [fontSize, setFontSize] = useState("");
-    const [style, setStyle] = useState("");
+  const [text, setText] = useState("");
+  const [name, setName] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const [color, setColor] = useState("");
+  const [fontSize, setFontSize] = useState("");
+  const [style, setStyle] = useState("");
 
   const resetInput = () => {
     setText("");
     setColor("");
     setFontSize("");
     setStyle("");
-    setName('');
-    setStudentId('');
+    setName("");
+    setStudentId("");
   };
 
   const handleSubmit = () => {
@@ -42,18 +42,23 @@ function DevPage() {
     resetInput();
     axios
       .post("http://3.38.231.213:8080/api/function", {
-          name: name,
-          studentId: studentId,
-          type: "function",
-          text: text,
-          property: {
-            color: color,
-            fontSize: fontSize,
-            style: style
-        }
+        name: name,
+        studentId: studentId,
+        type: "function",
+        text: text,
+        property: {
+          color: color,
+          fontSize: fontSize,
+          style: style,
+        },
       })
       .then((response) => {
         console.log("요청 성공", response.data);
+        const storedTextData =
+          JSON.parse(localStorage.getItem("textData")) || [];
+        const newText = response.data.text;
+        storedTextData.push(newText);
+        localStorage.setItem("textData", JSON.stringify(storedTextData));
       })
       .catch((error) => {
         console.log("요청 실패: ", error);
@@ -67,25 +72,27 @@ function DevPage() {
           <Back />
         </Link>
         <h2>텍스트 입력 코딩 사용자</h2>
-          </Header>
-          <Information>
-            <div>
-              <Text>이름</Text>
-              <input
-                placeholder="이름을 입력해주세요." 
-                type="text"
-                value={name}
-              onChange={(e) => setName(e.target.value)} />
-            </div>
-            <div>
-              <Text>학번</Text>
-              <input
-                placeholder="학번을 입력해주세요." 
-                type="text"
-                value={studentId}
-              onChange={(e) => setStudentId(e.target.value)} />
-            </div>
-            </Information>
+      </Header>
+      <Information>
+        <div>
+          <Text>이름</Text>
+          <input
+            placeholder="이름을 입력해주세요."
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <Text>학번</Text>
+          <input
+            placeholder="학번을 입력해주세요."
+            type="text"
+            value={studentId}
+            onChange={(e) => setStudentId(e.target.value)}
+          />
+        </div>
+      </Information>
       <TextInput>
         <TextImage />
         <Text>텍스트</Text>
@@ -140,5 +147,3 @@ function DevPage() {
 }
 
 export default DevPage;
-
-
