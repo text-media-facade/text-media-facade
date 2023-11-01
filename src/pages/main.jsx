@@ -24,7 +24,8 @@ const Main = () => {
 
   if (currentComponent === "TextComponent") {
     renderedComponent = (
-      <TextWrapper>{"Hello!\n Text Media Facade"}</TextWrapper>
+      <TextWrapper>{"Hello!\n Text Media Facade\n\n\n"}
+        <span style={{ fontSize: '30px'}}>Click me!</span></TextWrapper>
     );
   } else if (currentComponent === "ExplanationComponent") {
     renderedComponent = (
@@ -65,7 +66,6 @@ const Main = () => {
           <GuestButton onClick={() => navigate("/guest")}>
             {"방명록 리스트"}
           </GuestButton>
-          <LogoutButton onClick={handleLogoutClick}>{"로그아웃"}</LogoutButton>
         </LeftSideWrapper>
         <RightSideWrapper onClick={() => handleComponentToggle()}>
           <Wrapper3D isFlipped={isFlipped}>{renderedComponent}</Wrapper3D>

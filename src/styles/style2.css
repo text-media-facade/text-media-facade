@@ -6,22 +6,7 @@
   box-sizing: border-box;
   position: relative;
   }
-
-html, body {
-  height: 100%;
-  }
-  body {
-    text-align: center;
-    background-color: hsla(230,40%,50%,1);
-    }
-  body:before {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 0;
-    height: 100%;
-    }
-
+  
 h1 {
   display: inline-block;
   color: white;
