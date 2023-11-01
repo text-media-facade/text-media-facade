@@ -56,7 +56,12 @@ function DevPage() {
         console.log("요청 성공", response.data);
         const storedTextData =
           JSON.parse(localStorage.getItem("textData")) || [];
-        const newText = response.data.text;
+        const newText = {
+          text: response.data.text,
+          color: response.data.property.color,
+          fontSize: `${response.data.property.fontSize}px`,
+          style: response.data.property.style,
+        };
         storedTextData.push(newText);
         localStorage.setItem("textData", JSON.stringify(storedTextData));
       })
