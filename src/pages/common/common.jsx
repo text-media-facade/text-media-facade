@@ -56,7 +56,7 @@ function CommonPage() {
           JSON.parse(localStorage.getItem("textData")) || [];
         const newText = {
           text: response.data.text,
-          style: styleNumber,
+          styleNumber: styleNumber,
         };
         storedTextData.push(newText);
         localStorage.setItem("textData", JSON.stringify(storedTextData));
