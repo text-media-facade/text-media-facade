@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
@@ -31,7 +35,6 @@ public class MainController {
     }
 
 
-    @ResponseBody
     @PostMapping("/api/common")
     public String commons(@RequestBody Member member){
         String redirectUrl = "http://textmediafacade.site:3000/display";
@@ -42,9 +45,17 @@ public class MainController {
         returnMember.setText(member.getText());
         returnMember.setSelection(member.getSelection());
 
+        String encoded="";
+        try {
+            encoded = URLEncoder.encode(member.getText(), StandardCharsets.UTF_8.toString());
+            System.out.println("Encoded URL: " + encoded);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         log.info("name={}, studentId={}",returnMember.getName(), returnMember.getStudentId());
         memberService.save(returnMember);
-        redirectUrl += "?text=" + member.getText() +"&selection=" + member.getSelection();
+        redirectUrl += "?text=" + encoded +"&selection=" + member.getSelection();
         log.info("redirectUrl = {}",redirectUrl);
         return "redirect:" + redirectUrl;
     }
@@ -52,7 +63,6 @@ public class MainController {
 
     // 함수 사용자 저장 정보
     // 세션정보를 통해서 기존 로그인 정보를 가져와서 해당 열에 데이터베이스 정보를 업데이트 한다.
-    @ResponseBody
     @PostMapping("/api/function")
     public String functions(@RequestBody Member member){
 
@@ -63,12 +73,18 @@ public class MainController {
         returnMember.setStudentId(member.getStudentId());
         returnMember.setText(member.getText());
         returnMember.setProperty(member.getProperty().toString());
-
+        String encoded="";
+        try {
+            encoded = URLEncoder.encode(member.getText(), StandardCharsets.UTF_8.toString());
+            System.out.println("Encoded URL: " + encoded);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         log.info("name={}, studentId={}",returnMember.getName(), returnMember.getStudentId());
         memberService.save(returnMember);
         // "text" 매개변수 추가
-        redirectUrl += "?text=" + member.getText();
+        redirectUrl += "?text=" + encoded;
 
         // "color" 매개변수 추가
         if (member.getProperty() != null && member.getProperty().getColor() != null) {
