@@ -74,8 +74,9 @@ function DevPage() {
                     fontSize: `${response.data.property.fontSize}px`,
                     style: response.data.property.style
                 };
-                storedTextData.push(newText);
-                localStorage.setItem("textData", JSON.stringify(storedTextData));
+                const redirectURL = response.data.replace('redirect:', '');
+                // 리다이렉션 수행
+                window.location.href = redirectURL;
             })
             .catch((error) => {
                 console.log("요청 실패: ", error);

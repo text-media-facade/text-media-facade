@@ -1,31 +1,16 @@
 import React, { useState } from "react";
-
-import {
-  MainContainer,
-  Header,
-  TextInput,
-  Text,
-  Input1,
-  Information,
-  MyFunction,
-  StyleList,
-  Button,
-  TextImage,
-  Back,
-  Deco,
-  Button1,
-  Button2,
-  Button3,
-  Button4,
-} from "./style";
+import { MainContainer, Header, TextInput, Text, Input1, Information, MyFunction, StyleList, Button, TextImage, Back, Deco, Button1, Button2, Button3, Button4 } from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function CommonPage() {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [studentId, setStudentId] = useState("");
   const [activeButton, setActiveButton] = useState(null);
+  const navigate = useNavigate(); // useNavigate 훅 추가
 
   const handleButtonClick = (styleNumber) => {
     setActiveButton(styleNumber);
@@ -45,26 +30,22 @@ function CommonPage() {
       .post("http://3.38.231.213:8080/api/common", {
         withCredentials: true,
         text: text,
-        selection: styleNumber, // 스타일 번호를 전달
+        selection: styleNumber,
         name: name,
         studentId: studentId,
         type: "common",
       })
       .then((response) => {
         console.log("POST 요청 성공:", response.data);
-        const storedTextData =
-          JSON.parse(localStorage.getItem("textData")) || [];
-        const newText = {
-          text: response.data.text,
-          style: styleNumber,
-        };
-        storedTextData.push(newText);
-        localStorage.setItem("textData", JSON.stringify(storedTextData));
+        const redirectURL = response.data.replace('redirect:', '');
+        window.location.href = redirectURL;
+        
       })
       .catch((error) => {
         console.log("POST 요청 실패:", error);
       });
   };
+
 
   return (
     <MainContainer>

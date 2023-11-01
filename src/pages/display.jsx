@@ -5,18 +5,10 @@ const Display = () => {
   const [textData, setTextData] = useState([]);
   const [styleNumber, setStyleNumber] = useState(1);
 
-  useEffect(() => {
-    // 로컬 스토리지에서 데이터 불러오기
-    const storedTextData = JSON.parse(localStorage.getItem("textData")) || [];
-    console.log("storedTextData = " + storedTextData);
-    setTextData(storedTextData);
-  
-    // 스타일 번호 설정
-    if (storedTextData.length > 0) {
-      setStyleNumber(storedTextData[0].style); // 예: 첫 번째 데이터의 style 값을 사용
-    }
-  }, []);
+  const currentUrl = window.location.href;
+  console.log(currentUrl);
 
+  
   const renderStyledText = (text, styleNumber) => {
     console.log("styleNumber = " + styleNumber);
     const styleClass = `style-${styleNumber}`;
