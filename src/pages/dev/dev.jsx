@@ -13,12 +13,11 @@ import {
     GuideZone,
     Information
 } from './style';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
-
 
 function DevPage() {
     const [name, setName] = useState('');
@@ -37,7 +36,7 @@ function DevPage() {
     const handleKeyDown = (e) => {
         if (e.key === 'Tab') {
             e.preventDefault(); // 기본 동작을 중지
-            const { selectionStart, selectionEnd } = e.target;
+            const {selectionStart, selectionEnd} = e.target;
             const newCode = code.substring(0, selectionStart) + '\t' + code.substring(
                 selectionEnd
             );
@@ -53,7 +52,7 @@ function DevPage() {
         setName('');
         setStudentId('');
     };
-    
+
     const handleSubmit = () => {
         // POST : name, studentId
         resetInput();
@@ -71,6 +70,15 @@ function DevPage() {
             })
             .then((response) => {
                 console.log("요청 성공", response.data);
+                const storedTextData = JSON.parse(localStorage.getItem("textData")) || [];
+                const newText = {
+                    text: response.data.text,
+                    color: response.data.property.color,
+                    fontSize: `${response.data.property.fontSize}px`,
+                    style: response.data.property.style
+                };
+                storedTextData.push(newText);
+                localStorage.setItem("textData", JSON.stringify(storedTextData));
             })
             .catch((error) => {
                 console.log("요청 실패: ", error);
