@@ -67,9 +67,30 @@ public class MainController {
 
         log.info("name={}, studentId={}",returnMember.getName(), returnMember.getStudentId());
         memberService.save(returnMember);
-        redirectUrl += "?text=" + member.getText()+ "&property="  + member.getProperty();
-        log.info("redirectUrl = {}",redirectUrl);
+        // "text" 매개변수 추가
+        redirectUrl += "?text=" + member.getText();
+
+        // "color" 매개변수 추가
+        if (member.getProperty() != null && member.getProperty().getColor() != null) {
+            redirectUrl += "&color=" + member.getProperty().getColor();
+        }
+
+        // "fontSize" 매개변수 추가
+        if (member.getProperty() != null && member.getProperty().getFontSize() != null) {
+            redirectUrl += "&fontSize=" + member.getProperty().getFontSize();
+        }
+
+        // "style" 매개변수 추가
+        if (member.getProperty() != null && member.getProperty().getStyle() != null) {
+            redirectUrl += "&style=" + member.getProperty().getStyle();
+        }
+
+        // 로깅
+        log.info("redirectUrl = {}", redirectUrl);
+
+        // 리다이렉션
         return "redirect:" + redirectUrl;
     }
+
 
 }
