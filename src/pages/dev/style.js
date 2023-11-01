@@ -98,7 +98,7 @@ export const Text = styled.p`
 `;
 
 export const Input1 = styled.input`
-    width: 760px;
+    width: 750px;
     height: 45px;
     margin: auto 10px;
     border-radius: 10px;
@@ -106,6 +106,9 @@ export const Input1 = styled.input`
     padding: 3px 0 0 10px;
     background-color: #f2f2f2;
     font-size: 18px;
+    &:focus{
+            outline: none;
+        }
 `;
 
 export const MyFunction = styled.div`
@@ -183,6 +186,9 @@ export const Input2 = styled.textarea`
     background-color: #f2f2f2;
     border: 0;
     border-radius: 10px;
+    &:focus{
+            outline: none;
+        }
 `;
 
 export const Button = styled.button`
