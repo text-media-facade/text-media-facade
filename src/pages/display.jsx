@@ -80,9 +80,11 @@ const StyledItem = ({ data, renderStyledText }) => {
   console.log("text = ", text);
   console.log("styleNumber = ", style);
 
+  const randomTop = 10 + Math.random() * 80;
+
   return (
     <li>
-      <div className={`moving-text text-${style} moving-text-1`}>
+      <div className={`moving-text text-${style} moving-text-1`} style={{ top: randomTop + "%", left: randomTop + "%",  display: "block"}}>
         {renderStyledText(text, style)}
       </div>
     </li>
