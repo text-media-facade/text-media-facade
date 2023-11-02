@@ -49,6 +49,11 @@ function CommonPage() {
         name: name,
         studentId: studentId,
         type: "common",
+      }, {
+  headers: {
+    "Accept": "application/json",
+    // 다른 헤더도 추가할 수 있습니다.
+  }
       })
       .then((response) => {
         console.log("POST 요청 성공:", response.data);
@@ -56,7 +61,7 @@ function CommonPage() {
           JSON.parse(localStorage.getItem("textData")) || [];
         const newText = {
           text: response.data.text,
-          styleNumber: styleNumber,
+          style: styleNumber,
         };
         storedTextData.push(newText);
         localStorage.setItem("textData", JSON.stringify(storedTextData));
@@ -116,7 +121,7 @@ function CommonPage() {
               onClick={() => handleButtonClick(1)}
               className={activeButton === 1 ? "active" : ""}
             >
-              효과1
+              Bounce 효과, color: pink
             </Button1>
           </li>
           <li>
@@ -124,7 +129,7 @@ function CommonPage() {
               onClick={() => handleButtonClick(2)}
               className={activeButton === 2 ? "active" : ""}
             >
-              효과2
+              Bounce 효과, color: orange
             </Button2>
           </li>
           <li>
@@ -132,7 +137,7 @@ function CommonPage() {
               onClick={() => handleButtonClick(3)}
               className={activeButton === 3 ? "active" : ""}
             >
-              효과3
+              Loading Text 효과, color: green
             </Button3>
           </li>
           <li>
@@ -140,7 +145,7 @@ function CommonPage() {
               onClick={() => handleButtonClick(4)}
               className={activeButton === 4 ? "active" : ""}
             >
-              효과4
+              Text Animation 효과, color: random
             </Button4>
           </li>
         </StyleList>
